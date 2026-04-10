@@ -1,0 +1,21 @@
+services:
+  agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: myagent:latest
+    container_name: ${AGENT_CONTAINER_NAME:-agent-dev}
+    restart: unless-stopped
+    init: true
+    tty: true
+    stdin_open: true
+    attach: false
+
+    # Runtime state lives in /agent (volume-backed home)
+    volumes:
+      - ${WORKSPACE_DIR:-./}:/workspace
+      - agent_home:/agent
+      - ./auth.json:/agent/.codex/auth.json
+
+volumes:
+  agent_home:
