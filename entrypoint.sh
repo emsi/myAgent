@@ -20,6 +20,24 @@ trust_level = "trusted"
 
 model = "gpt-5.4-mini"
 model_reasoning_effort = "medium"
+
+[features]
+apps = false
+EOF
+fi
+
+# Optional default Claude Code runtime policy in agent home
+mkdir -p "${HOME}/.claude"
+if [ -f "${HOME}/.claude/settings.json" ]; then
+  echo "Using existing Claude Code config at ${HOME}/.claude/settings.json"
+else
+  tee "${HOME}/.claude/settings.json" >/dev/null <<'EOF'
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "skipDangerousModePermissionPrompt": true
+  }
+}
 EOF
 fi
 
