@@ -62,9 +62,11 @@ AGENT_ENGINE=claude docker compose up
    - Sandbox mode: `danger-full-access`
    - Workspace `/workspace` is marked as `trusted`
    - Default model: `gpt-5.4-mini` with `medium` reasoning effort
+   - Codex apps are disabled (`[features] apps = false`)
 3. Creates a default Claude Code config at `/agent/.claude/settings.json` if none exists:
    - Permission mode: `bypassPermissions` (YOLO mode)
    - Skip dangerous-mode confirmation prompt: `true`
+   - Plugins are not enabled by default (`"enabledPlugins": {}`)
 4. Execs the agent CLI specified by `AGENT_ENGINE`, forwarding all arguments.
 
 ## Installed Tools

@@ -33,6 +33,8 @@ if [ -f "${HOME}/.claude/settings.json" ]; then
 else
   tee "${HOME}/.claude/settings.json" >/dev/null <<'EOF'
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "enabledPlugins": {},
   "permissions": {
     "defaultMode": "bypassPermissions",
     "skipDangerousModePermissionPrompt": true
