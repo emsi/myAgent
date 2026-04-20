@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Optional agent CLIs
 ARG INSTALL_CODEX_CLI=1
-ARG INSTALL_CLAUDE_CODE=0
+ARG INSTALL_CLAUDE_CODE=1
 ARG INSTALL_GEMINI_CLI=0
 ARG INSTALL_OPENCODE=0
 
@@ -51,6 +51,8 @@ RUN apt-get update && apt-get install -y \
  && mkdir -p "${CARGO_HOME}/bin" \
  && rm -rf /var/lib/apt/lists/*
 
+# Install gh CLI
+RUN curl -sS https://webi.sh/gh \| sh
 
 # Install optional agent CLIs
 RUN npm config set fund false \
